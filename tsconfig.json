@@ -12,10 +12,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
+    "types": ["vite/client"],
     "paths": {
+      "@/components": ["./components/index.ts", "./components"],
+      "@/components/*": ["./components/*"],
       "@/*": ["./src/*"],
       "@components/*": ["./components/*"]
     }
   },
-  "include": ["src", "scripts", "components"]
+  "include": ["src", "scripts", "components", "pages"]
 }

@@ -1,0 +1,732 @@
+{
+  "version": 1,
+  "lastSync": "2026-06-29",
+  "components": {
+    "WhatsNewModal": {
+      "source": "resources/js/components/whats-new/whats-new-modal.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/whats-new-modal.tsx"
+    },
+    "WhatsNewForm": {
+      "source": "resources/js/components/whats-new/whats-new-form.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/whats-new-form.tsx"
+    },
+    "WhatsNewCard": {
+      "source": "resources/js/components/whats-new/whats-new-card.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/whats-new-card.tsx"
+    },
+    "FilterGroup": {
+      "source": "resources/js/components/whats-new/filter-group.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/filter-group.tsx"
+    },
+    "Tooltip": {
+      "source": "resources/js/components/ui/tooltip.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/tooltip.tsx"
+    },
+    "Toggle": {
+      "source": "resources/js/components/ui/toggle.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/toggle.tsx"
+    },
+    "ToggleGroup": {
+      "source": "resources/js/components/ui/toggle-group.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/toggle-group.tsx"
+    },
+    "Toaster": {
+      "source": "resources/js/components/ui/toaster.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/toaster.tsx"
+    },
+    "Toast": {
+      "source": "resources/js/components/ui/toast.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/toast.tsx"
+    },
+    "Textarea": {
+      "source": "resources/js/components/ui/textarea.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/textarea.tsx"
+    },
+    "Tabs": {
+      "source": "resources/js/components/ui/tabs.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/tabs.tsx"
+    },
+    "Table": {
+      "source": "resources/js/components/ui/table.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/table.tsx"
+    },
+    "Switch": {
+      "source": "resources/js/components/ui/switch.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/switch.tsx"
+    },
+    "Spinner": {
+      "source": "resources/js/components/ui/spinner.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/spinner.tsx"
+    },
+    "Sonner": {
+      "source": "resources/js/components/ui/sonner.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/sonner.tsx"
+    },
+    "Slider": {
+      "source": "resources/js/components/ui/slider.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/slider.tsx"
+    },
+    "SlidePanel": {
+      "source": "resources/js/components/ui/slide-panel.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/slide-panel.tsx"
+    },
+    "Skeleton": {
+      "source": "resources/js/components/ui/skeleton.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/skeleton.tsx"
+    },
+    "Sidebar": {
+      "source": "resources/js/components/ui/sidebar.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/sidebar.tsx"
+    },
+    "Sheet": {
+      "source": "resources/js/components/ui/sheet.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/sheet.tsx"
+    },
+    "Separator": {
+      "source": "resources/js/components/ui/separator.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/separator.tsx"
+    },
+    "Select": {
+      "source": "resources/js/components/ui/select.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/select.tsx"
+    },
+    "ScrollArea": {
+      "source": "resources/js/components/ui/scroll-area.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/scroll-area.tsx"
+    },
+    "Resizable": {
+      "source": "resources/js/components/ui/resizable.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/resizable.tsx"
+    },
+    "RadioGroup": {
+      "source": "resources/js/components/ui/radio-group.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/radio-group.tsx"
+    },
+    "Progress": {
+      "source": "resources/js/components/ui/progress.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/progress.tsx"
+    },
+    "Popover": {
+      "source": "resources/js/components/ui/popover.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/popover.tsx"
+    },
+    "Pagination": {
+      "source": "resources/js/components/ui/pagination.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/pagination.tsx"
+    },
+    "NavigationMenu": {
+      "source": "resources/js/components/ui/navigation-menu.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/navigation-menu.tsx"
+    },
+    "Menubar": {
+      "source": "resources/js/components/ui/menubar.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/menubar.tsx"
+    },
+    "Label": {
+      "source": "resources/js/components/ui/label.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/label.tsx"
+    },
+    "Input": {
+      "source": "resources/js/components/ui/input.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/input.tsx"
+    },
+    "InputOtp": {
+      "source": "resources/js/components/ui/input-otp.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/input-otp.tsx"
+    },
+    "HoverCard": {
+      "source": "resources/js/components/ui/hover-card.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/hover-card.tsx"
+    },
+    "Form": {
+      "source": "resources/js/components/ui/form.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/form.tsx"
+    },
+    "DropdownMenu": {
+      "source": "resources/js/components/ui/dropdown-menu.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/dropdown-menu.tsx"
+    },
+    "Drawer": {
+      "source": "resources/js/components/ui/drawer.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/drawer.tsx"
+    },
+    "Dialog": {
+      "source": "resources/js/components/ui/dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/dialog.tsx"
+    },
+    "ContextMenu": {
+      "source": "resources/js/components/ui/context-menu.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/context-menu.tsx"
+    },
+    "Command": {
+      "source": "resources/js/components/ui/command.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/command.tsx"
+    },
+    "Collapsible": {
+      "source": "resources/js/components/ui/collapsible.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/collapsible.tsx"
+    },
+    "Checkbox": {
+      "source": "resources/js/components/ui/checkbox.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/checkbox.tsx"
+    },
+    "Chart": {
+      "source": "resources/js/components/ui/chart.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/chart.tsx"
+    },
+    "ChartError": {
+      "source": "resources/js/components/ui/chart-error.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/chart-error.tsx"
+    },
+    "Carousel": {
+      "source": "resources/js/components/ui/carousel.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/carousel.tsx"
+    },
+    "Card": {
+      "source": "resources/js/components/ui/card.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/card.tsx"
+    },
+    "Calendar": {
+      "source": "resources/js/components/ui/calendar.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/calendar.tsx"
+    },
+    "Button": {
+      "source": "resources/js/components/ui/button.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/button.tsx"
+    },
+    "Breadcrumb": {
+      "source": "resources/js/components/ui/breadcrumb.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/breadcrumb.tsx"
+    },
+    "Box": {
+      "source": "resources/js/components/ui/box.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/box.tsx"
+    },
+    "Badge": {
+      "source": "resources/js/components/ui/badge.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/badge.tsx"
+    },
+    "Avatar": {
+      "source": "resources/js/components/ui/avatar.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/avatar.tsx"
+    },
+    "AspectRatio": {
+      "source": "resources/js/components/ui/aspect-ratio.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/aspect-ratio.tsx"
+    },
+    "Alert": {
+      "source": "resources/js/components/ui/alert.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/alert.tsx"
+    },
+    "AlertDialog": {
+      "source": "resources/js/components/ui/alert-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/alert-dialog.tsx"
+    },
+    "Accordion": {
+      "source": "resources/js/components/ui/accordion.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/accordion.tsx"
+    },
+    "InputLabel": {
+      "source": "resources/js/components/ui/InputLabel.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/InputLabel.tsx"
+    },
+    "InputError": {
+      "source": "resources/js/components/ui/InputError.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/ui/InputError.tsx"
+    },
+    "IndeterminateCheckbox": {
+      "source": "resources/js/components/table/indeterminateCheckbox.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/indeterminateCheckbox.tsx"
+    },
+    "RatingDialog": {
+      "source": "resources/js/components/feedback/rating-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/rating-dialog.tsx"
+    },
+    "FeedbackToggleItem": {
+      "source": "resources/js/components/feedback/feedback-toggle-item.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/feedback-toggle-item.tsx"
+    },
+    "FeedbackFormDialog": {
+      "source": "resources/js/components/feedback/feedback-form-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/feedback-form-dialog.tsx"
+    },
+    "VisionIntelligenceLogo": {
+      "source": "resources/js/components/common/vision-intelligence-logo.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/vision-intelligence-logo.tsx"
+    },
+    "TextLayer": {
+      "source": "resources/js/components/common/text-layer.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/text-layer.tsx"
+    },
+    "TextInput": {
+      "source": "resources/js/components/common/text-input.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/text-input.tsx"
+    },
+    "TableFiltersClearButton": {
+      "source": "resources/js/components/common/table-filters-clear-button.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/table-filters-clear-button.tsx"
+    },
+    "SocialsLogin": {
+      "source": "resources/js/components/common/socials-login.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/socials-login.tsx"
+    },
+    "SettingCrossoutIcon": {
+      "source": "resources/js/components/common/setting-crossout-icon.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/setting-crossout-icon.tsx"
+    },
+    "SearchInput": {
+      "source": "resources/js/components/common/search-input.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/search-input.tsx"
+    },
+    "ResponsiveTabs": {
+      "source": "resources/js/components/common/responsive-tabs.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/responsive-tabs.tsx"
+    },
+    "PasswordInput": {
+      "source": "resources/js/components/common/password-input.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/password-input.tsx"
+    },
+    "PageHeader": {
+      "source": "resources/js/components/common/page-header.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/page-header.tsx"
+    },
+    "MultiSelect": {
+      "source": "resources/js/components/common/multi-select.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/multi-select.tsx"
+    },
+    "MultiSearchSelect": {
+      "source": "resources/js/components/common/multi-search-select.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/multi-search-select.tsx"
+    },
+    "MarkdownEditor": {
+      "source": "resources/js/components/common/markdown-editor.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/markdown-editor.tsx"
+    },
+    "LocalizedTextTranslationsDialog": {
+      "source": "resources/js/components/common/localized-text-translations-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/localized-text-translations-dialog.tsx"
+    },
+    "LanguageSwitcher": {
+      "source": "resources/js/components/common/language-switcher.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/language-switcher.tsx"
+    },
+    "JsonEditor": {
+      "source": "resources/js/components/common/json-editor.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/json-editor.tsx"
+    },
+    "ImagePreviewDialog": {
+      "source": "resources/js/components/common/image-preview-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/image-preview-dialog.tsx"
+    },
+    "GoogleAddressAutocomplete": {
+      "source": "resources/js/components/common/google-address-autocomplete.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/google-address-autocomplete.tsx"
+    },
+    "FormFooterActions": {
+      "source": "resources/js/components/common/form-footer-actions.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/form-footer-actions.tsx"
+    },
+    "FormContentWrapper": {
+      "source": "resources/js/components/common/form-content-wrapper.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/form-content-wrapper.tsx"
+    },
+    "FilterPills": {
+      "source": "resources/js/components/common/filter-pills.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/filter-pills.tsx"
+    },
+    "FileUpload": {
+      "source": "resources/js/components/common/file-upload.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/file-upload.tsx"
+    },
+    "FileDropzone": {
+      "source": "resources/js/components/common/file-dropzone.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/file-dropzone.tsx"
+    },
+    "ErrorFallback": {
+      "source": "resources/js/components/common/error-fallback.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/error-fallback.tsx"
+    },
+    "ErrorBoundary": {
+      "source": "resources/js/components/common/error-boundary.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/error-boundary.tsx"
+    },
+    "EnvironmentBadge": {
+      "source": "resources/js/components/common/environment-badge.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/environment-badge.tsx"
+    },
+    "EditableText": {
+      "source": "resources/js/components/common/editable-text.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/editable-text.tsx"
+    },
+    "DynamicIcon": {
+      "source": "resources/js/components/common/dynamic-icon.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/dynamic-icon.tsx"
+    },
+    "DatePicker": {
+      "source": "resources/js/components/common/date-picker.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/date-picker.tsx"
+    },
+    "CreatableCombobox": {
+      "source": "resources/js/components/common/creatable-combobox.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/creatable-combobox.tsx"
+    },
+    "CountrySelect": {
+      "source": "resources/js/components/common/country-select.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/country-select.tsx"
+    },
+    "CountryFlagSelect": {
+      "source": "resources/js/components/common/country-flag-select.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/country-flag-select.tsx"
+    },
+    "ContactOwnerDialog": {
+      "source": "resources/js/components/common/contact-owner-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/contact-owner-dialog.tsx"
+    },
+    "ConfirmDialog": {
+      "source": "resources/js/components/common/confirm-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/confirm-dialog.tsx"
+    },
+    "ConfirmDeleteDialog": {
+      "source": "resources/js/components/common/confirm-delete-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/confirm-delete-dialog.tsx"
+    },
+    "CommandPallete": {
+      "source": "resources/js/components/common/command-pallete.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/command-pallete.tsx"
+    },
+    "ComboboxSelect": {
+      "source": "resources/js/components/common/combobox-select.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/combobox-select.tsx"
+    },
+    "ColorPicker": {
+      "source": "resources/js/components/common/color-picker.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/color-picker.tsx"
+    },
+    "AuthWelcomePanel": {
+      "source": "resources/js/components/common/auth-welcome-panel.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/auth-welcome-panel.tsx"
+    },
+    "AuthInput": {
+      "source": "resources/js/components/common/auth-input.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/auth-input.tsx"
+    },
+    "AddUserDropdown": {
+      "source": "resources/js/components/common/add-user-dropdown.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/add-user-dropdown.tsx"
+    },
+    "AiContextDialog": {
+      "source": "resources/js/components/ai-context-dialog/ai-context-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/ai-context-dialog.tsx"
+    },
+    "AclManagerContent": {
+      "source": "resources/js/components/acl/acl-manager-content.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/acl-manager-content.tsx"
+    },
+    "AclManageRoleUsersDialog": {
+      "source": "resources/js/components/acl/acl-manage-role-users-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/acl-manage-role-users-dialog.tsx"
+    },
+    "AclDialog": {
+      "source": "resources/js/components/acl/acl-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/acl-dialog.tsx"
+    },
+    "SupportWidget": {
+      "source": "resources/js/components/widgets/support/support-widget.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/support-widget.tsx"
+    },
+    "SubscriptionDialog": {
+      "source": "resources/js/components/widgets/subscription/subscription-dialog.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/subscription-dialog.tsx"
+    },
+    "SupportTrigger": {
+      "source": "resources/js/components/widgets/guide/support-trigger.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/support-trigger.tsx"
+    },
+    "RulesInfoSection": {
+      "source": "resources/js/components/widgets/guide/rules-info-section.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/rules-info-section.tsx"
+    },
+    "OnboardingTour": {
+      "source": "resources/js/components/widgets/guide/onboarding-tour.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/onboarding-tour.tsx"
+    },
+    "HelpContentRenderer": {
+      "source": "resources/js/components/widgets/guide/help-content-renderer.tsx",
+      "status": "synced",
+      "extractedAt": "2026-06-29",
+      "destination": "components/other/help-content-renderer.tsx"
+    },
+    "UnifiedTable": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/table/UnifiedTable.tsx"
+    },
+    "RowActionsMenu": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/table/RowActionsMenu.tsx"
+    },
+    "PaginationControls": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/table/PaginationControls.tsx"
+    },
+    "EmsTable": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/energy-management/EmsTable.tsx"
+    },
+    "EmsTableRow": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/energy-management/EmsTableRow.tsx"
+    },
+    "EmsMediaTabs": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/energy-management/EmsMediaTabs.tsx"
+    },
+    "EmsActionIcons": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/energy-management/EmsActionIcons.tsx"
+    },
+    "EmsMetadataIcons": {
+      "source": "standalone",
+      "status": "canonical",
+      "extractedAt": "2026-06-30",
+      "destination": "components/energy-management/EmsMetadataIcons.tsx"
+    }
+  }
+}

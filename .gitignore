@@ -2,10 +2,7 @@ node_modules/
 dist/
 .env.local
 
-# Project content is git-ignored; only .gitkeep is tracked
-projects/*/
-!projects/.gitkeep
 
-# Component files are git-ignored; sync them locally via npm run sync
-components/*/
-!components/.gitkeep
+# Page files are git-ignored; users create their own pages locally
+pages/*/
+!pages/.gitkeep

@@ -30,23 +30,39 @@ import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { Calendar } from '@/components/ui/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { DatePicker } from '@/components/other/date-picker'
+import { DatePickerSimple } from '@/components/other/date-picker-simple'
+import { cs } from 'date-fns/locale'
+import { format } from 'date-fns'
+import type { DateRange } from 'react-day-picker'
 import { MultiSelect } from '@/components/other/multi-select'
 import { ResponsiveTabs } from '@/components/other/responsive-tabs'
+import { EnergyManagementTabs } from '@/components/energy-management/EnergyManagementTabs'
+import type { EnergyManagementTabItem } from '@/components/energy-management/EnergyManagementTabs'
 import { UnifiedTable, RowActionsMenu } from '@/components/table'
 import type { ColumnDef } from '@tanstack/react-table'
 import {
   AlertCircle,
+  BarChart3,
   Bell,
+  Calendar as CalendarIcon,
   ChevronDown,
   Component,
+  Droplets,
   Eye,
+  Flame,
   Info,
+  Leaf,
   LayoutGrid,
   Pencil,
   Search,
+  Thermometer,
   Trash2,
   User,
+  X,
+  Zap,
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -89,9 +105,9 @@ function ComponentSection({
 
 function VariantRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-4 py-2 border-b border-bg_border_element last:border-0">
-      <span className="w-44 flex-shrink-0 text-xs font-mono text-text_secondary">{label}</span>
-      <div className="flex flex-wrap items-center gap-3">{children}</div>
+    <div className="flex items-start gap-4 py-2 border-b border-bg_border_element last:border-0">
+      <span className="w-44 flex-shrink-0 pt-1 text-xs font-mono text-text_secondary">{label}</span>
+      <div className="flex flex-1 min-w-0 flex-wrap items-start gap-3">{children}</div>
     </div>
   )
 }
@@ -130,6 +146,20 @@ export default function KatalogKomponent() {
   const [search, setSearch] = useState('')
   const [multiVal, setMultiVal] = useState<string[]>([])
   const [progress] = useState(65)
+  const [emsTab, setEmsTab] = useState('overview')
+  const [responsiveTab, setResponsiveTab] = useState('zakladni')
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined)
+  const [dateRangeOpen, setDateRangeOpen] = useState(false)
+  const [dateSimple, setDateSimple] = useState<Date | null>(null)
+
+  const EMS_TABS: EnergyManagementTabItem[] = [
+    { id: 'overview', label: 'Přehled', icon: BarChart3, colorClass: 'bg-main_color/20', textColorClass: 'text-text_primary', borderColorClass: 'border-main_color/45' },
+    { id: 'electricity', label: 'Elektřina', icon: Zap, colorClass: 'bg-red-100/50', textColorClass: 'text-red-600', borderColorClass: 'border-red-300/70' },
+    { id: 'water', label: 'Voda', icon: Droplets, colorClass: 'bg-blue-100/50', textColorClass: 'text-blue-600', borderColorClass: 'border-blue-300/70' },
+    { id: 'gas', label: 'Plyn', icon: Flame, colorClass: 'bg-purple-100/50', textColorClass: 'text-purple-600', borderColorClass: 'border-purple-300/70' },
+    { id: 'heat', label: 'Teplo', icon: Thermometer, colorClass: 'bg-orange-100/50', textColorClass: 'text-orange-600', borderColorClass: 'border-orange-300/70' },
+    { id: 'esg', label: 'ESG', icon: Leaf, colorClass: 'bg-green-100/50', textColorClass: 'text-green-600', borderColorClass: 'border-green-300/70' },
+  ]
 
   const MULTI_OPTIONS = [
     { value: 'ems', label: 'EMS' },
@@ -157,7 +187,7 @@ export default function KatalogKomponent() {
                 ['btn','#1 Button'],['badge','#2 Badge'],['input','#3 Input'],
                 ['label','#4 Label'],['textarea','#5 Textarea'],['select','#6 Select'],
                 ['checkbox','#7 Checkbox'],['switch','#8 Switch'],['radio','#9 RadioGroup'],
-                ['datepicker','#10 DatePicker'],['tabs','#11 Tabs'],['dialog','#12 Dialog'],
+                ['datepicker','#10 DatePicker'],['tabs','#11 Tabs / EnergyTabs'],['dialog','#12 Dialog'],
                 ['tooltip','#13 Tooltip'],['dropdown','#14 DropdownMenu'],['table','#15 UnifiedTable'],
                 ['avatar','#16 Avatar'],['separator','#17 Separator'],['skeleton','#18 Skeleton'],
                 ['spinner','#19 Spinner'],['alert','#20 Alert'],['card','#21 Card'],
@@ -418,33 +448,106 @@ export default function KatalogKomponent() {
           <VariantRow label="bez popisku">
             <DatePicker hideLabel value={date} onChange={(d) => setDate(d ?? null)} className="w-56" />
           </VariantRow>
+          <VariantRow label="bez dropdownu (label)">
+            <DatePickerSimple
+              label="Datum připomínky"
+              value={dateSimple}
+              onChange={(d) => setDateSimple(d ?? null)}
+              className="w-56"
+            />
+          </VariantRow>
+          <VariantRow label="rozsah dat (range)">
+            <div className="space-y-2">
+              <Popover open={dateRangeOpen} onOpenChange={setDateRangeOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="relative w-64 justify-start pr-10 text-left font-normal"
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4 shrink-0" />
+                    <span className="truncate text-sm">
+                      {dateRange?.from ? (
+                        dateRange.to ? (
+                          <>{format(dateRange.from, 'dd.MM')} – {format(dateRange.to, 'dd.MM.yyyy')}</>
+                        ) : (
+                          format(dateRange.from, 'dd.MM.yyyy')
+                        )
+                      ) : (
+                        <span className="text-muted-foreground">Vyberte rozsah</span>
+                      )}
+                    </span>
+                    {dateRange?.from && (
+                      <div
+                        role="button"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 hover:bg-bg_secondary"
+                        onClick={(e) => { e.stopPropagation(); setDateRange(undefined) }}
+                      >
+                        <X className="h-3 w-3" />
+                      </div>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="range"
+                    defaultMonth={dateRange?.from}
+                    selected={dateRange}
+                    onSelect={setDateRange}
+                    numberOfMonths={2}
+                    locale={cs}
+                  />
+                </PopoverContent>
+              </Popover>
+              <p className="text-xs text-text_secondary">
+                Přímé použití <code className="font-mono">Calendar</code> s <code className="font-mono">mode="range" numberOfMonths={'{2}'}</code> — bez wrapper komponenty.
+              </p>
+            </div>
+          </VariantRow>
         </ComponentSection>
 
         {/* ── #11 Tabs ── */}
         <ComponentSection id="tabs" n={11} name="Záložky" en="Tabs" importPath="@/components/ui/tabs">
-          <VariantRow label="základní">
-            <Tabs defaultValue="t1" className="w-full max-w-md">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="t1">Přehled</TabsTrigger>
-                <TabsTrigger value="t2">Detail</TabsTrigger>
-                <TabsTrigger value="t3">Historie</TabsTrigger>
-              </TabsList>
-              <TabsContent value="t1" className="rounded-md border border-bg_border_element p-4 text-sm text-text_secondary">Obsah záložky Přehled</TabsContent>
-              <TabsContent value="t2" className="rounded-md border border-bg_border_element p-4 text-sm text-text_secondary">Obsah záložky Detail</TabsContent>
-              <TabsContent value="t3" className="rounded-md border border-bg_border_element p-4 text-sm text-text_secondary">Obsah záložky Historie</TabsContent>
-            </Tabs>
+          <VariantRow label="základní (s rámečkem)">
+            <div className="w-full max-w-md rounded-md bg-bg_secondary p-4">
+              <Tabs defaultValue="t1" className="w-full">
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="t1">Přehled</TabsTrigger>
+                  <TabsTrigger value="t2">Detail</TabsTrigger>
+                  <TabsTrigger value="t3">Historie</TabsTrigger>
+                </TabsList>
+                <TabsContent value="t1" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Obsah záložky Přehled</TabsContent>
+                <TabsContent value="t2" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Obsah záložky Detail</TabsContent>
+                <TabsContent value="t3" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Obsah záložky Historie</TabsContent>
+              </Tabs>
+            </div>
           </VariantRow>
-          <VariantRow label="průhledné (detail page)">
-            <Tabs defaultValue="t1" className="w-full max-w-md">
-              <TabsList className="h-auto flex-wrap justify-start gap-1 bg-transparent p-0">
-                <TabsTrigger value="t1">Základní info</TabsTrigger>
-                <TabsTrigger value="t2">Organizace</TabsTrigger>
-                <TabsTrigger value="t3">Aktivity</TabsTrigger>
-              </TabsList>
-              <TabsContent value="t1" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Obsah záložky</TabsContent>
-              <TabsContent value="t2" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Organizace</TabsContent>
-              <TabsContent value="t3" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Aktivity</TabsContent>
-            </Tabs>
+          <VariantRow label="na celou šířku (v dialogu)">
+            <div className="w-full">
+              <Tabs defaultValue="t1" className="w-full">
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="t1">Struktura</TabsTrigger>
+                  <TabsTrigger value="t2">Parametry</TabsTrigger>
+                  <TabsTrigger value="t3">Koncepty</TabsTrigger>
+                </TabsList>
+                <TabsContent value="t1" className="rounded-md border border-bg_border_element p-4 text-sm text-text_secondary">Obsah záložky Struktura</TabsContent>
+                <TabsContent value="t2" className="rounded-md border border-bg_border_element p-4 text-sm text-text_secondary">Obsah záložky Parametry</TabsContent>
+                <TabsContent value="t3" className="rounded-md border border-bg_border_element p-4 text-sm text-text_secondary">Obsah záložky Koncepty</TabsContent>
+              </Tabs>
+            </div>
+          </VariantRow>
+          <VariantRow label="průhledné (detail stránka — bez rámečku)">
+            <div className="w-full max-w-md rounded-md bg-bg_secondary p-4">
+              <Tabs defaultValue="t1" className="w-full">
+                <TabsList className="h-auto flex-wrap justify-start gap-1 bg-transparent p-0">
+                  <TabsTrigger value="t1">Základní info</TabsTrigger>
+                  <TabsTrigger value="t2">Organizace</TabsTrigger>
+                  <TabsTrigger value="t3">Aktivity</TabsTrigger>
+                </TabsList>
+                <TabsContent value="t1" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Obsah záložky</TabsContent>
+                <TabsContent value="t2" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Organizace</TabsContent>
+                <TabsContent value="t3" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Aktivity</TabsContent>
+              </Tabs>
+            </div>
           </VariantRow>
           <VariantRow label="s ikonami (kategorie)">
             <Tabs defaultValue="prehled" className="w-full max-w-lg">
@@ -469,10 +572,10 @@ export default function KatalogKomponent() {
             </Tabs>
           </VariantRow>
           <VariantRow label="ResponsiveTabs (scrollovatelné)">
-            <div className="w-full max-w-sm">
+            <div className="w-full max-w-2xl space-y-2">
               <ResponsiveTabs
-                value="zakladni"
-                onValueChange={() => {}}
+                value={responsiveTab}
+                onValueChange={setResponsiveTab}
                 tabs={[
                   { value: 'zakladni', label: 'Základní informace' },
                   { value: 'obecne', label: 'Obecné nastavení' },
@@ -482,12 +585,29 @@ export default function KatalogKomponent() {
                   { value: 'protokoly', label: 'Protokoly aktivit' },
                 ]}
               >
-                <TabsContent value="zakladni" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Obsah záložky</TabsContent>
+                <TabsContent value="zakladni" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Základní informace</TabsContent>
+                <TabsContent value="obecne" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Obecné nastavení</TabsContent>
+                <TabsContent value="zarizeni" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Zařízení</TabsContent>
+                <TabsContent value="uzivatele" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Uživatelé</TabsContent>
+                <TabsContent value="kontakty" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Kontaktní osoby</TabsContent>
+                <TabsContent value="protokoly" className="rounded-md border border-bg_border_element bg-bg_primary p-4 text-sm text-text_secondary">Protokoly aktivit</TabsContent>
               </ResponsiveTabs>
+              <p className="text-xs text-text_secondary">
+                Import: <code className="font-mono">@/components/other/responsive-tabs</code> — automaticky přidává šipky při přetečení. Použij pro detail stránky s mnoha záložkami.
+              </p>
             </div>
-            <p className="text-xs text-text_secondary mt-1 w-full">
-              Import: <code className="font-mono">@/components/other/responsive-tabs</code> — automaticky přidává šipky při přetečení. Použij pro detail stránky s mnoha záložkami.
-            </p>
+          </VariantRow>
+          <VariantRow label="EnergyManagementTabs (s barevným borde rem)">
+            <div className="w-full max-w-2xl space-y-2">
+              <EnergyManagementTabs
+                tabs={EMS_TABS}
+                activeTabId={emsTab}
+                onTabChange={setEmsTab}
+              />
+              <p className="text-xs text-text_secondary">
+                Import: <code className="font-mono">@/components/energy-management/EnergyManagementTabs</code> — vlastní HC komponent (není shadcn). Každá záložka má <code className="font-mono">colorClass</code>, <code className="font-mono">textColorClass</code>, <code className="font-mono">borderColorClass</code> z Tailwindu.
+              </p>
+            </div>
           </VariantRow>
         </ComponentSection>
 

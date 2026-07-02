@@ -5,4 +5,5 @@ dist/
 
 # Page files are git-ignored; users create their own pages locally
 pages/*/
+!pages/dokumentace/
 !pages/.gitkeep

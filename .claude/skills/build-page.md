@@ -49,6 +49,30 @@ Exceptions — where raw Tailwind is acceptable:
 - Static info fields (read-only label+value pairs) — plain `<div>` is fine
 - Category tab bars that are NOT shadcn Tabs (e.g. filter tabs that just set state) — plain `<button>` is fine
 
+## components/other/ — what is safe to use in prototypes
+
+`components/other/` contains components synced from HardminCloud. Many depend on backend context (API calls, i18n, auth). Use only the ones marked ✅ below — the rest will compile but may behave as empty stubs or require props that don't exist in the prototype context.
+
+| Component | Import | Safe? | Notes |
+|---|---|---|---|
+| `DatePicker` | `@/components/other/date-picker` | ✅ | Use for all date fields |
+| `SearchInput` | `@/components/other/search-input` | ⚠️ | HC-specifický (Inertia router) — použij `Input` s ikonou `Search` místo toho |
+| `MultiSelect` | `@/components/other/multi-select` | ✅ | Multi-value dropdown |
+| `ComboboxSelect` | `@/components/other/combobox-select` | ✅ | Searchable single select |
+| `ConfirmDialog` | `@/components/other/confirm-dialog` | ✅ | Simple yes/no confirmation |
+| `ConfirmDeleteDialog` | `@/components/other/confirm-delete-dialog` | ✅ | Delete confirmation with name input |
+| `PageHeader` | `@/components/other/page-header` | ✅ | HC-style page header (alternative to manual div) |
+| `PasswordInput` | `@/components/other/password-input` | ✅ | Input with show/hide toggle |
+| `FilterGroup` | `@/components/other/filter-group` | ✅ | Horizontal filter chip group |
+| `ResponsiveTabs` | `@/components/other/responsive-tabs` | ✅ | Scrollable tabs with left/right arrows — use for detail pages with many tabs |
+| `FilterPills` | `@/components/other/filter-pills` | ✅ | Active filter pill list |
+| `AclDialog` | `@/components/other/acl-dialog` | ⚠️ | Makes real axios calls — use only as visual stub |
+| `FeedbackFormDialog` | `@/components/other/feedback-form-dialog` | ⚠️ | Sends real API requests |
+| `MarkdownEditor` | `@/components/other/markdown-editor` | ⚠️ | Heavy Lexical editor — avoid unless needed |
+| `ErrorFallback` | `@/components/other/error-fallback` | ⚠️ | Requires i18n context from HC |
+
+When in doubt — prefer `@/components/ui/*` (shadcn primitives) over `@/components/other/*`. The `ui/` components are always safe.
+
 ## Component usage examples
 
 ### Select (dropdown filter)
@@ -85,11 +109,44 @@ import { Label } from '@/components/ui/label'
 ```tsx
 import { Button } from '@/components/ui/button'
 
-<Button>Uložit</Button>                          // primary (main_color)
+<Button>Uložit</Button>                          // primary (black)
+<Button variant="main">Uložit</Button>           // brand gold (main_color) — use for primary CTA
 <Button variant="outline">Zrušit</Button>        // bordered
 <Button variant="destructive">Smazat</Button>    // red
 <Button variant="ghost">Skrýt</Button>           // no border
 ```
+
+### Icon-only button (with tooltip)
+
+**Never use a native `<button>` for icon actions.** Use `Button` with `size="icon"` and wrap in `Tooltip`:
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { Trash2 } from 'lucide-react'
+
+<TooltipProvider delayDuration={200}>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label="Smazat"
+        onClick={(e) => e.stopPropagation()}
+        className="text-red-500 hover:text-red-600"
+      >
+        <Trash2 className="h-4 w-4" />
+      </Button>
+    </TooltipTrigger>
+    <TooltipContent>Smazat</TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+Common icon button color classes:
+- `text-main_color` — primary action (edit, permissions)
+- `text-text_secondary` — neutral action (deactivate, info)
+- `text-red-500` — destructive action (delete)
 
 ### Dialog (modal)
 
@@ -103,8 +160,9 @@ import { Dialog, DialogContent } from '@/components/ui/dialog'
 </Dialog>
 ```
 
-### Tabs (shadcn)
+### Tabs — 4 varianty
 
+**1. Standardní (v rámečku)** — filtry, přepínání pohledů:
 ```tsx
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
@@ -114,8 +172,47 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
     <TabsTrigger value="parametry">Parametry</TabsTrigger>
   </TabsList>
   <TabsContent value="obecne">…</TabsContent>
-  <TabsContent value="parametry">…</TabsContent>
 </Tabs>
+```
+
+**2. Průhledné (detail stránka)** — záložky bez rámečku, klasicky na detail pages:
+```tsx
+<Tabs defaultValue="zakladni">
+  <TabsList className="h-auto flex-wrap justify-start gap-1 bg-transparent p-0">
+    <TabsTrigger value="zakladni">Základní info</TabsTrigger>
+    <TabsTrigger value="organizace">Organizace</TabsTrigger>
+  </TabsList>
+  <TabsContent value="zakladni">…</TabsContent>
+</Tabs>
+```
+
+**3. S ikonami** — stejný Tabs, jen přidej ikonu do TabsTrigger:
+```tsx
+<TabsTrigger value="elektrina" className="gap-1.5">
+  <Zap className="h-4 w-4" />Elektřina
+</TabsTrigger>
+```
+
+**4. ResponsiveTabs** — scrollovatelné záložky se šipkami, pro detail stránky s mnoha záložkami:
+```tsx
+import { ResponsiveTabs } from '@/components/other/responsive-tabs'
+import { TabsContent } from '@/components/ui/tabs'
+
+<ResponsiveTabs
+  value={activeTab}
+  onValueChange={setActiveTab}
+  tabs={[
+    { value: 'zakladni', label: 'Základní informace' },
+    { value: 'zarizeni', label: 'Zařízení' },
+    { value: 'uzivatele', label: 'Uživatelé' },
+    // label může být ReactNode — lze přidat ikony
+    { value: 'wiki', label: <><FileText className="h-4 w-4 mr-1" />AI Wiki</> },
+    { value: 'hidden', label: 'Skrytá', visible: false },    // skrytá záložka
+    { value: 'disabled', label: 'Disabled', disabled: true }, // zakázaná záložka
+  ]}
+>
+  <TabsContent value="zakladni">…</TabsContent>
+</ResponsiveTabs>
 ```
 
 ## Tables — always use these, never write `<table>` manually
@@ -309,6 +406,54 @@ export default function SectionForm() {
   )
 }
 ```
+
+## Charts — always use recharts
+
+`recharts` is pre-installed. Never install other chart libraries.
+
+**Rules:**
+- Always wrap in `ResponsiveContainer width="100%" height={N}` — never use fixed width
+- Tailwind classes do NOT work inside recharts props — use hex colors directly
+- `#c9a440` = HC brand gold. `#3b82f6` = blue. `#10b981` = green. `#ef4444` = red
+- Use `vertical={false}` on `CartesianGrid` (horizontal lines only)
+- Use `radius={[4, 4, 0, 0]}` on `Bar` for rounded tops
+
+```tsx
+import {
+  BarChart, Bar, LineChart, Line, AreaChart, Area,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+} from 'recharts'
+
+const DATA = [
+  { label: 'Led', value: 120 },
+  { label: 'Úno', value: 95 },
+  { label: 'Bře', value: 140 },
+]
+
+// Bar chart
+<ResponsiveContainer width="100%" height={260}>
+  <BarChart data={DATA} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+    <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+    <YAxis tick={{ fontSize: 12 }} unit=" kWh" width={60} />
+    <Tooltip formatter={(v) => [`${v} kWh`, 'Spotřeba']} />
+    <Bar dataKey="value" fill="#c9a440" radius={[4, 4, 0, 0]} />
+  </BarChart>
+</ResponsiveContainer>
+
+// Line chart
+<ResponsiveContainer width="100%" height={260}>
+  <LineChart data={DATA}>
+    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+    <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+    <YAxis tick={{ fontSize: 12 }} />
+    <Tooltip />
+    <Line type="monotone" dataKey="value" stroke="#c9a440" strokeWidth={2} dot={false} />
+  </LineChart>
+</ResponsiveContainer>
+```
+
+Multiple series — add multiple `<Bar>` or `<Line>` with different `dataKey` and `fill`/`stroke`.
 
 ## After creating
 

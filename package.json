@@ -8,7 +8,6 @@
     "preview": "vite preview",
     "test": "vitest",
     "sync": "tsx --env-file=.env.local scripts/sync.ts",
-    "export": "tsx scripts/export.ts",
     "types": "tsc --noEmit"
   },
   "dependencies": {

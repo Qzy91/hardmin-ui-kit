@@ -24,9 +24,6 @@ npm run build     # production build → dist/
 npm run sync      # sync components from HardminCloud (requires .env.local)
 ```
 
-> `npm run export` is currently broken — it was written for the old project structure.
-> Use `npm run build` to get a deployable `dist/` instead.
-
 ## How to work with Claude
 
 Just describe what you want in plain language. Claude will pick the right skill automatically.

@@ -1,6 +1,8 @@
 node_modules/
 dist/
 .env.local
+.superpowers/
+.claude/settings.local.json
 
 
 # Page files are git-ignored; users create their own pages locally

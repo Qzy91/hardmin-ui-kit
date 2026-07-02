@@ -1,4 +1,4 @@
-import { BarChart2, BookOpen, CheckCircle, MessageSquare, Monitor, Plus, RefreshCw, Sparkles, Terminal } from 'lucide-react'
+import { BookOpen, CheckCircle, MessageSquare, Monitor, Plus, RefreshCw, Sparkles, Terminal } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 
@@ -226,80 +226,23 @@ components/
         {/* Dostupné knihovny */}
         <Section id="knihovny" title="Dostupné knihovny">
           <p className="text-sm text-text_secondary leading-relaxed">
-            Tyto knihovny jsou předinstalované a připravené k použití v prototypových stránkách.
-            Neinstaluj nic navíc — pokud chceš graf, použij <strong className="text-text_primary">recharts</strong>.
+            Tyto knihovny jsou předinstalované. Neinstaluj nic navíc.
           </p>
-
-          <div className="space-y-3">
-            {/* Recharts */}
-            <div className="rounded-lg border border-bg_border_element bg-bg_primary p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <BarChart2 className="h-4 w-4 text-main_color flex-shrink-0" />
-                <span className="font-bold text-text_primary">recharts</span>
-                <span className="text-xs text-text_secondary">— grafy a vizualizace dat</span>
+          <div className="rounded-lg border border-bg_border_element bg-bg_primary divide-y divide-bg_border_element">
+            {[
+              { name: 'recharts', desc: 'Grafy a vizualizace dat — BarChart, LineChart, AreaChart, PieChart' },
+              { name: 'lucide-react', desc: 'Ikony — 6 000+ ikon, např. Trash2, Plus, Search, ChevronDown' },
+              { name: 'shadcn/ui + Radix UI', desc: 'UI komponenty — Button, Dialog, Select, Tabs, Tooltip a další (viz Katalog komponent)' },
+              { name: '@tanstack/react-table', desc: 'Tabulky — použij přes UnifiedTable, nevolej přímo' },
+              { name: 'react-router-dom', desc: 'Navigace — useNavigate, useSearchParams, Link' },
+              { name: 'date-fns', desc: 'Práce s daty — formátování a parsování, používá DatePicker interně' },
+              { name: 'tailwindcss', desc: 'CSS utility třídy a design tokeny (bg-bg_primary, text-main_color…)' },
+            ].map((lib) => (
+              <div key={lib.name} className="flex items-baseline gap-3 px-4 py-3">
+                <code className="w-52 flex-shrink-0 text-xs font-mono font-bold text-text_primary">{lib.name}</code>
+                <span className="text-sm text-text_secondary">{lib.desc}</span>
               </div>
-              <p className="text-xs text-text_secondary mb-3">
-                Knihovna pro grafy. Vždy obaluj do <code className="font-mono">ResponsiveContainer</code>. Tailwind třídy nefungují uvnitř grafů — barvy piš jako hex hodnoty (<code className="font-mono">#c9a440</code> = brandová zlatá).
-              </p>
-              <pre className="overflow-x-auto rounded-md bg-gray-50 border border-bg_border_element px-3 py-2 font-mono text-xs text-text_primary">{`import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-
-const DATA = [
-  { label: 'Led', value: 120 },
-  { label: 'Úno', value: 95 },
-]
-
-<ResponsiveContainer width="100%" height={260}>
-  <BarChart data={DATA}>
-    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-    <XAxis dataKey="label" />
-    <YAxis unit=" kWh" />
-    <Tooltip />
-    <Bar dataKey="value" fill="#c9a440" radius={[4, 4, 0, 0]} />
-  </BarChart>
-</ResponsiveContainer>`}</pre>
-              <p className="mt-2 text-xs text-text_secondary">
-                Typy grafů: <code className="font-mono">BarChart</code> · <code className="font-mono">LineChart</code> · <code className="font-mono">AreaChart</code> · <code className="font-mono">PieChart</code>
-              </p>
-            </div>
-
-            {/* Ostatní knihovny */}
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {[
-                {
-                  name: 'lucide-react',
-                  desc: 'Ikony (6 000+ ikon)',
-                  example: "import { Trash2, Plus, Search } from 'lucide-react'",
-                  note: 'Použití: <Trash2 className="h-4 w-4" />',
-                },
-                {
-                  name: 'react-router-dom',
-                  desc: 'Navigace mezi stránkami',
-                  example: "import { useNavigate, useSearchParams } from 'react-router-dom'",
-                  note: 'navigate(`/sekce/detail?id=${id}`)',
-                },
-                {
-                  name: '@tanstack/react-table',
-                  desc: 'Tabulky (interně přes UnifiedTable)',
-                  example: "import type { ColumnDef } from '@tanstack/react-table'",
-                  note: 'Použij UnifiedTable — nevolej přímo',
-                },
-                {
-                  name: 'date-fns',
-                  desc: 'Práce s daty (interně v DatePicker)',
-                  example: "import { format, parseISO } from 'date-fns'",
-                  note: "format(new Date(), 'dd.MM.yyyy')",
-                },
-              ].map((lib) => (
-                <div key={lib.name} className="rounded-lg border border-bg_border_element bg-bg_primary p-3 space-y-1.5">
-                  <div className="flex items-center justify-between gap-2">
-                    <code className="text-xs font-mono font-bold text-text_primary">{lib.name}</code>
-                    <span className="text-xs text-text_secondary">{lib.desc}</span>
-                  </div>
-                  <pre className="rounded bg-gray-50 px-2 py-1 font-mono text-[11px] text-text_secondary overflow-x-auto">{lib.example}</pre>
-                  <p className="text-[11px] text-text_secondary">{lib.note}</p>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </Section>
 

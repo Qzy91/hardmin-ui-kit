@@ -25,12 +25,13 @@ export interface SectionEntry {
   title: string
   icon?: LucideIcon
   group?: string
+  order?: number
   pages: PageEntry[]
 }
 
-function getSectionMeta(section: string): { title?: string; icon?: LucideIcon; group?: string } {
+function getSectionMeta(section: string): { title?: string; icon?: LucideIcon; group?: string; order?: number } {
   const key = `/pages/${section}/_section.ts`
-  const mod = sectionMetas[key] as { title?: string; icon?: LucideIcon; group?: string } | undefined
+  const mod = sectionMetas[key] as { title?: string; icon?: LucideIcon; group?: string; order?: number } | undefined
   return mod ?? {}
 }
 
@@ -53,6 +54,7 @@ export function buildSections(): SectionEntry[] {
         title: meta.title ?? formatLabel(section),
         icon: meta.icon,
         group: meta.group,
+        order: meta.order,
         pages: [],
       })
     }
@@ -76,5 +78,9 @@ export function buildSections(): SectionEntry[] {
     })
   }
 
-  return Array.from(sections.values())
+  return Array.from(sections.values()).sort((a, b) => {
+    const oa = a.order ?? 9999
+    const ob = b.order ?? 9999
+    return oa !== ob ? oa - ob : a.key.localeCompare(b.key)
+  })
 }

@@ -1,9 +1,11 @@
 import { cn } from '@/lib/utils'
+import { Moon, Sun } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { SidebarNavGroup } from './SidebarNavGroup'
 import { SidebarNavLink } from './SidebarNavLink'
 import { SidebarSection } from './SidebarSection'
+import { useTheme } from './contexts/theme-context'
 import type { SectionEntry } from './use-pages'
 
 interface Props {
@@ -44,6 +46,7 @@ export function Sidebar({ collapsed, sections }: Props) {
     if (activeSection) setOpenSection(activeSection)
   }, [activeSection])
 
+  const { theme, toggleTheme } = useTheme()
   const groups = groupSections(sections)
 
   return (
@@ -57,13 +60,28 @@ export function Sidebar({ collapsed, sections }: Props) {
       <div
         className={cn(
           'flex h-16 flex-shrink-0 items-center border-b border-bg_border_element',
-          collapsed ? 'justify-center px-2' : 'pl-5',
+          collapsed ? 'justify-center px-2' : 'pl-5 pr-2',
         )}
       >
         {collapsed ? (
-          <span className="text-xl font-bold text-main_color">H</span>
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center rounded-md p-1.5 text-text_secondary transition-colors hover:bg-bg_secondary"
+            aria-label={theme === 'light' ? 'Přepnout na tmavý režim' : 'Přepnout na světlý režim'}
+          >
+            {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          </button>
         ) : (
-          <span className="text-base font-semibold text-text_primary">Hardmin UI Kit</span>
+          <>
+            <span className="flex-1 text-base font-semibold text-text_primary">Hardmin UI Kit</span>
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center rounded-md p-1.5 text-text_secondary transition-colors hover:bg-bg_secondary"
+              aria-label={theme === 'light' ? 'Přepnout na tmavý režim' : 'Přepnout na světlý režim'}
+            >
+              {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+            </button>
+          </>
         )}
       </div>
 
@@ -104,7 +122,7 @@ export function Sidebar({ collapsed, sections }: Props) {
       </div>
 
       {/* Footer */}
-      <div className="flex-shrink-0 border-t border-bg_border_element p-3">
+      <div className="flex-shrink-0 border-t border-bg_border_element px-3 py-2">
         {!collapsed && (
           <span className="text-xs text-text_secondary">UI Kit preview</span>
         )}

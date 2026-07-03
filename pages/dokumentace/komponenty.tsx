@@ -65,6 +65,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { useState } from 'react'
+import { useTheme } from '@/contexts/theme-context'
 
 export const title = 'Katalog komponent'
 export const icon = Component
@@ -151,6 +152,7 @@ export default function KatalogKomponent() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined)
   const [dateRangeOpen, setDateRangeOpen] = useState(false)
   const [dateSimple, setDateSimple] = useState<Date | null>(null)
+  const { theme } = useTheme()
 
   const EMS_TABS: EnergyManagementTabItem[] = [
     { id: 'overview', label: 'Přehled', icon: BarChart3, colorClass: 'bg-main_color/20', textColorClass: 'text-text_primary', borderColorClass: 'border-main_color/45' },
@@ -193,6 +195,7 @@ export default function KatalogKomponent() {
                 ['spinner','#19 Spinner'],['alert','#20 Alert'],['card','#21 Card'],
                 ['progress','#22 Progress'],['searchinput','#23 SearchInput'],
                 ['multiselect','#24 MultiSelect'],['accordion','#25 Accordion'],
+                ['colors','Barvy & tokeny'],
               ].map(([id, label]) => (
                 <button
                   key={id}
@@ -862,32 +865,143 @@ export default function KatalogKomponent() {
           </VariantRow>
         </ComponentSection>
 
-        {/* Design tokeny */}
-        <section className="rounded-lg border border-bg_border_element bg-bg_primary overflow-hidden">
+        {/* Design tokeny – barvy */}
+        <section id="colors" className="scroll-mt-6 rounded-lg border border-bg_border_element bg-bg_primary overflow-hidden">
           <div className="flex items-center gap-3 border-b border-bg_border_element bg-bg_secondary px-5 py-3">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-main_color text-xs font-bold text-text_primary">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-main_color text-xs font-bold text-text_primary flex-shrink-0">
               <LayoutGrid className="h-4 w-4" />
             </span>
-            <span className="font-bold text-text_primary">Design tokeny</span>
+            <span className="font-bold text-text_primary">Design tokeny – barvy</span>
             <span className="text-text_secondary text-sm">(povinné — nikdy nepoužívej hardcoded barvy)</span>
           </div>
-          <div className="p-5 grid grid-cols-2 gap-3 md:grid-cols-3">
-            {[
-              { token: 'bg-bg_primary', desc: 'bílé panely, karty', color: 'bg-white border border-gray-200' },
-              { token: 'bg-bg_secondary', desc: 'pozadí stránky', color: 'bg-gray-100 border border-gray-200' },
-              { token: 'border-bg_border_element', desc: 'hranice', color: 'border-2 border-gray-300 bg-transparent' },
-              { token: 'text-text_primary', desc: 'hlavní text', color: 'bg-gray-900' },
-              { token: 'text-text_secondary', desc: 'tlumený text, popisky', color: 'bg-gray-500' },
-              { token: 'bg-main_color', desc: 'zlatá brandová barva', color: 'bg-amber-300' },
-            ].map((t) => (
-              <div key={t.token} className="flex items-center gap-3 rounded-md border border-bg_border_element p-3">
-                <div className={`h-8 w-8 flex-shrink-0 rounded-md ${t.color}`} />
-                <div>
-                  <code className="text-xs font-mono font-bold text-text_primary">{t.token}</code>
-                  <p className="text-xs text-text_secondary">{t.desc}</p>
-                </div>
+          <div className="p-5 space-y-8">
+
+            {/* Zlatá brand */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-text_secondary">Zlatá – brand</h3>
+              <div className="flex flex-wrap gap-5">
+                {[
+                  { token: 'bg-main_color', tailwind: 'bg-main_color', lightHex: '#D1B97A', darkHex: '#896C24', desc: 'Aktiv, brand, navigace' },
+                  { token: 'bg-main_color_secondary', tailwind: 'bg-main_color_secondary', lightHex: '#F0E3B8', darkHex: '#3E392D', desc: 'Světlý tón zlaté' },
+                  { token: 'bg-text_dark_main_color', tailwind: 'bg-text_dark_main_color', lightHex: '#896C24', darkHex: '#D1B97A', desc: 'Zlatá ink (text)' },
+                ].map((t) => (
+                  <div key={t.token} className="flex min-w-[130px] flex-col gap-2">
+                    <div className={`h-14 w-full rounded-lg border border-bg_border_element ${t.tailwind}`} />
+                    <div>
+                      <code className="block text-xs font-mono font-bold text-text_primary">{t.token}</code>
+                      <span className="text-xs font-mono text-text_secondary">{theme === 'dark' ? t.darkHex : t.lightHex}</span>
+                      <p className="text-xs text-text_secondary">{t.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Sémantické barvy */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-text_secondary">Sémantické barvy</h3>
+              <div className="flex flex-wrap gap-5">
+                {[
+                  { label: 'Zelená', cssVar: '--color-green', lightHex: '#2E9E59', darkHex: '#23874A', desc: 'Úspěch, aktivní' },
+                  { label: 'Červená', cssVar: '--color-red', lightHex: '#DC4B46', darkHex: '#C93C37', desc: 'Chyba, nebezpečí' },
+                  { label: 'Modrá', cssVar: '--color-blue', lightHex: '#3B82C4', darkHex: '#2E6CAC', desc: 'Info, odkaz' },
+                  { label: 'Fialová', cssVar: '--color-purple', lightHex: '#7C5CBE', darkHex: '#6446AB', desc: 'Speciální akce' },
+                  { label: 'Oranžová', cssVar: '--color-orange', lightHex: '#E8833A', darkHex: '#D4742B', desc: 'Varování' },
+                ].map((t) => (
+                  <div key={t.cssVar} className="flex min-w-[120px] flex-col gap-2">
+                    <div
+                      className="h-14 w-full rounded-lg border border-bg_border_element"
+                      style={{ backgroundColor: `var(${t.cssVar})` }}
+                    />
+                    <div>
+                      <code className="block text-xs font-mono font-bold text-text_primary">{t.label}</code>
+                      <span className="text-xs font-mono text-text_secondary">{t.cssVar}</span>
+                      <br />
+                      <span className="text-xs font-mono text-text_secondary">{theme === 'dark' ? t.darkHex : t.lightHex}</span>
+                      <p className="text-xs text-text_secondary">{t.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Plochy */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-text_secondary">Plochy (Surfaces)</h3>
+              <div className="flex flex-wrap gap-5">
+                {[
+                  { token: 'bg-bg_primary', tailwind: 'bg-bg_primary', lightHex: '#FFFFFF', darkHex: '#0F0F0F', desc: 'Pozadí stránky, karty' },
+                  { token: 'bg-bg_secondary', tailwind: 'bg-bg_secondary', lightHex: '#F7F7F7', darkHex: '#171717', desc: 'Panel, postranní lišta' },
+                  { token: 'bg-bg_border_element', tailwind: 'bg-bg_border_element', lightHex: '#D9D9D9', darkHex: '#383838', desc: 'Ohraničení prvků' },
+                  { token: '--table-header', tailwind: '', lightHex: '#292A30', darkHex: '#1C1D22', desc: 'Hlavička tabulky (tmavá + bílý text)' },
+                ].map((t) => (
+                  <div key={t.token} className="flex min-w-[130px] flex-col gap-2">
+                    <div
+                      className={`h-14 w-full rounded-lg border border-bg_border_element ${t.tailwind}`}
+                      style={t.tailwind ? undefined : { backgroundColor: `var(${t.token})` }}
+                    />
+                    <div>
+                      <code className="block text-xs font-mono font-bold text-text_primary">{t.token}</code>
+                      <span className="text-xs font-mono text-text_secondary">{theme === 'dark' ? t.darkHex : t.lightHex}</span>
+                      <p className="text-xs text-text_secondary">{t.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Text */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-text_secondary">Text</h3>
+              <div className="flex flex-wrap gap-5">
+                {[
+                  { token: 'text-text_primary', tailwind: 'bg-text_primary', lightHex: '#000000', darkHex: '#FFFFFF', desc: 'Hlavní text' },
+                  { token: 'text-text_secondary', tailwind: 'bg-text_secondary', lightHex: '#595959', darkHex: '#C7C7C7', desc: 'Méně důležitý text' },
+                  { token: 'text-text_alert', tailwind: 'bg-text_alert', lightHex: '#AC0000', darkHex: '#C47070', desc: 'Chybové hlášky' },
+                ].map((t) => (
+                  <div key={t.token} className="flex min-w-[130px] flex-col gap-2">
+                    <div className={`h-14 w-full rounded-lg border border-bg_border_element ${t.tailwind}`} />
+                    <div>
+                      <code className="block text-xs font-mono font-bold text-text_primary">{t.token}</code>
+                      <span className="text-xs font-mono text-text_secondary">{theme === 'dark' ? t.darkHex : t.lightHex}</span>
+                      <p className="text-xs text-text_secondary">{t.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Komodity */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-text_secondary">Komodity (EMS)</h3>
+              <div className="flex flex-wrap gap-5">
+                {[
+                  { label: 'Elektřina', tintVar: '--color-red-tint', solidVar: '--color-red' },
+                  { label: 'Voda', tintVar: '--color-blue-tint', solidVar: '--color-blue' },
+                  { label: 'Plyn', tintVar: '--color-purple-tint', solidVar: '--color-purple' },
+                  { label: 'Teplo', tintVar: '--color-orange-tint', solidVar: '--color-orange' },
+                  { label: 'ESG', tintVar: '--color-green-tint', solidVar: '--color-green' },
+                  { label: 'Přehled', tintVar: '--color-gold-tint', solidVar: '--main-color' },
+                ].map((t) => (
+                  <div key={t.label} className="flex min-w-[100px] flex-col gap-2">
+                    <div
+                      className="relative h-14 w-full overflow-hidden rounded-lg border border-bg_border_element"
+                      style={{ backgroundColor: `var(${t.tintVar})` }}
+                    >
+                      <div
+                        className="absolute left-2 top-2 h-3 w-3 rounded-full"
+                        style={{ backgroundColor: `var(${t.solidVar})` }}
+                      />
+                    </div>
+                    <div>
+                      <code className="block text-xs font-mono font-bold text-text_primary">{t.label}</code>
+                      <span className="text-xs font-mono text-text_secondary">{t.tintVar}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </section>
 

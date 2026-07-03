@@ -30,7 +30,7 @@ function Step({ n, title, children }: { n: number; title: string; children: Reac
 
 function CodeBlock({ children }: { children: string }) {
   return (
-    <pre className="overflow-x-auto rounded-lg border border-bg_border_element bg-gray-50 px-4 py-3 font-mono text-sm text-text_primary">
+    <pre className="overflow-x-auto rounded-lg border border-bg_border_element bg-bg_secondary px-4 py-3 font-mono text-sm text-text_primary">
       {children}
     </pre>
   )
@@ -113,7 +113,7 @@ export default function UvodInstrukce() {
         <Section id="workflow" title="Jak vytvořit novou stránku">
           <div className="space-y-3">
             <Step n={1} title="Otevřete VS Code v projektu hardmin-ui-kit">
-              Ujistěte se, že pracujete ve složce <code className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs">hardmin-ui-kit</code>, ne v HardminCloudu.
+              Ujistěte se, že pracujete ve složce <code className="rounded bg-bg_secondary px-1.5 py-0.5 font-mono text-xs">hardmin-ui-kit</code>, ne v HardminCloudu.
             </Step>
             <Step n={2} title="Pořiďte screenshot reference">
               Screenshot z reálné HC aplikace, Figmy nebo jiného zdroje. Čím přesnější reference, tím lepší výsledek.

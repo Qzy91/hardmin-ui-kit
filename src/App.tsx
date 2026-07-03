@@ -1,6 +1,7 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppLayout } from './AppLayout'
 import { LanguageProvider } from './contexts/language-context'
+import { ThemeProvider } from './contexts/theme-context'
 import { buildSections } from './use-pages'
 
 const sections = buildSections()
@@ -8,6 +9,7 @@ const firstPage = sections[0]?.pages[0]
 
 export default function App() {
   return (
+    <ThemeProvider>
     <LanguageProvider>
     <HashRouter>
       <AppLayout sections={sections}>
@@ -43,5 +45,6 @@ export default function App() {
       </AppLayout>
     </HashRouter>
     </LanguageProvider>
+    </ThemeProvider>
   )
 }

@@ -16,6 +16,22 @@
     --main-color-secondary: 46 65% 83%;
     --text-dark-main-color: 43 58% 34%;
 
+    /* Table header (dark surface with white text) */
+    --table-header: #292A30;
+
+    /* Designer semantic colors (light) */
+    --color-green: #2E9E59;
+    --color-red: #DC4B46;
+    --color-blue: #3B82C4;
+    --color-purple: #7C5CBE;
+    --color-orange: #E8833A;
+    --color-green-tint: rgba(46, 158, 89, 0.14);
+    --color-red-tint: rgba(220, 75, 70, 0.14);
+    --color-blue-tint: rgba(59, 130, 196, 0.14);
+    --color-purple-tint: rgba(124, 92, 190, 0.14);
+    --color-orange-tint: rgba(232, 131, 58, 0.14);
+    --color-gold-tint: rgba(209, 185, 122, 0.20);
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -47,6 +63,22 @@
     --main-color: 43 58% 34%;
     --main-color-secondary: 44 15% 21%;
     --text-dark-main-color: 43 49% 65%;
+
+    /* Table header (dark surface with white text) */
+    --table-header: #1C1D22;
+
+    /* Designer semantic colors (dark) */
+    --color-green: #23874A;
+    --color-red: #C93C37;
+    --color-blue: #2E6CAC;
+    --color-purple: #6446AB;
+    --color-orange: #D4742B;
+    --color-green-tint: rgba(35, 135, 74, 0.18);
+    --color-red-tint: rgba(201, 60, 55, 0.18);
+    --color-blue-tint: rgba(46, 108, 172, 0.18);
+    --color-purple-tint: rgba(100, 70, 171, 0.18);
+    --color-orange-tint: rgba(212, 116, 43, 0.18);
+    --color-gold-tint: rgba(137, 108, 36, 0.22);
 
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;

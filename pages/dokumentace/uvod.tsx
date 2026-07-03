@@ -1,4 +1,4 @@
-import { BookOpen, CheckCircle, MessageSquare, Monitor, Plus, RefreshCw, Sparkles, Terminal } from 'lucide-react'
+import { BookOpen, CheckCircle, FolderArchive, MessageSquare, Monitor, Plus, RefreshCw, Sparkles, Terminal } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 
@@ -219,6 +219,12 @@ components/
               </div>
             ))}
           </div>
+          <InfoBox icon={FolderArchive} title="Předání stránek">
+            Kromě <code className="rounded bg-bg_secondary px-1.5 py-0.5 font-mono text-xs">pages/dokumentace</code> jsou
+            všechny složky v <code className="rounded bg-bg_secondary px-1.5 py-0.5 font-mono text-xs">pages/</code> v
+            .gitignore. Pro předání stránek stačí složku zazipovat a u druhého uživatele ji vložit do jeho{' '}
+            <code className="rounded bg-bg_secondary px-1.5 py-0.5 font-mono text-xs">pages/</code>.
+          </InfoBox>
         </Section>
 
         <Separator />

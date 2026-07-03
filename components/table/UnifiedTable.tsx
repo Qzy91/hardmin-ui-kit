@@ -121,7 +121,7 @@ export function UnifiedTable<TData extends object>({
 
       <div className="overflow-x-auto rounded-lg border border-bg_border_element bg-bg_primary">
         <Table className="w-full">
-          <TableHeader style={{ backgroundColor: '#3d3d3d' }}>
+          <TableHeader className="bg-table_header">
             {table.getHeaderGroups().map((hg) => (
               <TableRow key={hg.id} className="border-b-0 hover:bg-transparent">
                 {hg.headers.map((header) => (
@@ -130,7 +130,7 @@ export function UnifiedTable<TData extends object>({
                     style={{ width: header.getSize() ? `${header.getSize()}px` : undefined }}
                     className={cn(
                       'group h-12 px-4 text-sm font-medium text-white',
-                      header.column.getCanSort() && 'cursor-pointer select-none hover:!bg-[#4a4a4a] transition-colors',
+                      header.column.getCanSort() && 'cursor-pointer select-none hover:!bg-white/10 transition-colors',
                       header.id === 'actions' && 'text-right',
                     )}
                     onClick={header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined}

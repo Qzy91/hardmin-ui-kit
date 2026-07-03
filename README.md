@@ -51,6 +51,12 @@ The sidebar on the left lists all created sections and pages. Click any item to 
 
 Detail and edit pages are not listed in the sidebar — navigate to them by clicking a row in the table.
 
+## Note on git
+
+Only `pages/dokumentace/` is tracked in git — every other folder under `pages/` is git-ignored.
+
+To transfer your pages: zip the folder and hand it over. The recipient just drops it into their own `pages/` folder.
+
 ## Useful commands
 
 ```bash

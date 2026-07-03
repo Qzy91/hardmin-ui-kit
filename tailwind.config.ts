@@ -65,6 +65,7 @@ const config: Config = {
         main_color: 'hsl(var(--main-color))',
         main_color_secondary: 'hsl(var(--main-color-secondary))',
         text_dark_main_color: 'hsl(var(--text-dark-main-color))',
+        table_header: 'var(--table-header)',
       },
     },
   },

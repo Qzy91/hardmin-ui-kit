@@ -20,7 +20,7 @@ export function EmsTable({ columns, rows }: EmsTableProps) {
   return (
     <div className="overflow-hidden rounded-lg border border-bg_border_element">
       <Table>
-        <TableHeader style={{ backgroundColor: '#3d3d3d' }}>
+        <TableHeader className="bg-table_header">
           <TableRow className="border-b-0 hover:bg-transparent">
             <TableHead className="border-r border-white/10 text-center text-white font-semibold">
               Klient
